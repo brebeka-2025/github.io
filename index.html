@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Digital Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fafafa;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 32px;
+        }
+
+        .skills-tags {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .skill-tag {
+            background: #f5f5f5;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 0.9rem;
+            color: #555;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 24px 0;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #1a1a1a;
+        }
+
+        /* Main Content */
+        main {
+            padding: 80px 0;
+        }
+
+        .section {
+            margin-bottom: 120px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+            letter-spacing: -1px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+        }
+
+        .project-image {
+            height: 240px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .project-image.app-1 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .project-image.app-2 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .project-image.email-1 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .project-image.workflow-1 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+
+        .project-image.design-1 {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #333;
+        }
+
+        .project-content {
+            padding: 32px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tool-tag {
+            background: #f8f8f8;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            color: #555;
+            border: 1px solid #e8e8e8;
+        }
+
+        .project-metrics {
+            display: flex;
+            gap: 24px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1a1a1a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+            margin-top: 16px;
+        }
+
+        .cta-button:hover {
+            background: #333;
+        }
+
+        /* Skills Dashboard */
+        .skills-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .skill-tile {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .skill-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .skill-description {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #1a1a1a;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .contact-section h2 {
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .contact-section p {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+        }
+
+        .contact-button {
+            background: white;
+            color: #1a1a1a;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-tags {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Your Name</h1>
+            <p class="subtitle">Marketing Professional • App Developer • Designer</p>
+            <div class="skills-tags">
+                <span class="skill-tag">Mobile Development</span>
+                <span class="skill-tag">Email Marketing</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">Workflow Optimization</span>
+                <span class="skill-tag">Data Analysis</span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#apps">Applications</a></li>
+                <li><a href="#marketing">Marketing</a></li>
+                <li><a href="#design">Design</a></li>
+                <li><a href="#workflows">Workflows</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <!-- Apps Section -->
+            <section id="apps" class="section">
+                <h2 class="section-title">Mobile Applications</h2>
+                <p class="section-description">Currently developing two mobile applications using modern technologies and user-centered design principles.</p>
+                
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-image app-1">
+                            <span>📱 TaskFlow App</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">TaskFlow Mobile App</h3>
+                            <p class="project-description">A productivity app that helps teams manage tasks across multiple projects with intelligent automation and real-time collaboration features.</p>
+                            <div class="project-tools">
+                                <span class="tool-tag">React Native</span>
+                                <span class="tool-tag">Node.js</span>
+                                <span class="tool-tag">MongoDB</span>
+                                <span class="tool-tag">Firebase</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">15</span>
+                                    <span class="metric-label">Beta Users</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">4.2/5</span>
+                                    <span class="metric-label">Rating</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">85%</span>
+                                    <span class="metric-label">Complete</span>
+                                </div>
+                            </div>
+                            <a href="#" class="cta-button">View on GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image app-2">
+                            <span>🎯 Focus Tracker</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Focus Tracker</h3>
+                            <p class="project-description">A time-tracking and productivity analytics app that uses AI to identify focus patterns and suggest optimal work schedules.</p>
+                            <div class="project-tools">
+                                <span class="tool-tag">Flutter</span>
+                                <span class="tool-tag">Python</span>
+                                <span class="tool-tag">TensorFlow</span>
+                                <span class="tool-tag">PostgreSQL</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">8</span>
+                                    <span class="metric-label">Beta Users</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">4.5/5</span>
+                                    <span class="metric-label">Rating</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">60%</span>
+                                    <span class="metric-label">Complete</span>
+                                </div>
+                            </div>
+                            <a href="#" class="cta-button">View on GitHub →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marketing Section -->
+            <section id="marketing" class="section">
+                <h2 class="section-title">Email Marketing</h2>
+                <p class="section-description">Strategic email campaigns that drive engagement and conversions through data-driven design and personalized messaging.</p>
+                
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-image email-1">
+                            <span>📧 Holiday Campaign</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Q4 Holiday Email Series</h3>
+                            <p class="project-description">Multi-touchpoint automated email sequence for retail client, featuring personalized product recommendations and dynamic content.</p>
+                            <div class="project-tools">
+                                <span class="tool-tag">HubSpot</span>
+                                <span class="tool-tag">Canva</span>
+                                <span class="tool-tag">Google Analytics</span>
+                                <span class="tool-tag">Mailchimp</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">31%</span>
+                                    <span class="metric-label">Open Rate</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">8.2%</span>
+                                    <span class="metric-label">Click Rate</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">$45K</span>
+                                    <span class="metric-label">Revenue</span>
+                                </div>
+                            </div>
+                            <a href="#" class="cta-button">View Case Study →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Design Section -->
+            <section id="design" class="section">
+                <h2 class="section-title">Graphic Design</h2>
+                <p class="section-description">Visual communication projects spanning brand identity, digital graphics, and user interface design.</p>
+                
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-image design-1">
+                            <span>🎨 Brand Identity</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Local Business Rebrand</h3>
+                            <p class="project-description">Complete brand identity redesign including logo, color palette, typography system, and marketing materials for growing local business.</p>
+                            <div class="project-tools">
+                                <span class="tool-tag">Adobe Creative Suite</span>
+                                <span class="tool-tag">Figma</span>
+                                <span class="tool-tag">Canva</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">3</span>
+                                    <span class="metric-label">Projects</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">100%</span>
+                                    <span class="metric-label">Client Satisfaction</span>
+                                </div>
+                            </div>
+                            <a href="#" class="cta-button">View Portfolio →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workflows Section -->
+            <section id="workflows" class="section">
+                <h2 class="section-title">Process Optimization</h2>
+                <p class="section-description">Workflow automation and process improvements that increase efficiency and reduce manual tasks.</p>
+                
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-image workflow-1">
+                            <span>⚡ Automation System</span>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Marketing Workflow Automation</h3>
+                            <p class="project-description">Streamlined content creation and approval process that reduced production time by 40% while maintaining quality standards.</p>
+                            <div class="project-tools">
+                                <span class="tool-tag">Zapier</span>
+                                <span class="tool-tag">Airtable</span>
+                                <span class="tool-tag">Slack</span>
+                                <span class="tool-tag">Google Workspace</span>
+                            </div>
+                            <div class="project-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">40%</span>
+                                    <span class="metric-label">Time Saved</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">12</span>
+                                    <span class="metric-label">Team Members</span>
+                                </div>
+                            </div>
+                            <a href="#" class="cta-button">View Documentation →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Dashboard -->
+            <section class="section">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="skills-dashboard">
+                    <div class="skill-tile">
+                        <div class="skill-icon">💻</div>
+                        <h3 class="skill-title">Development</h3>
+                        <p class="skill-description">Mobile apps, web development, database design, API integration</p>
+                    </div>
+                    <div class="skill-tile">
+                        <div class="skill-icon">📈</div>
+                        <h3 class="skill-title">Marketing</h3>
+                        <p class="skill-description">Email campaigns, analytics, conversion optimization, A/B testing</p>
+                    </div>
+                    <div class="skill-tile">
+                        <div class="skill-icon">🎨</div>
+                        <h3 class="skill-title">Design</h3>
+                        <p class="skill-description">UI/UX design, brand identity, graphic design, prototyping</p>
+                    </div>
+                    <div class="skill-tile">
+                        <div class="skill-icon">⚙️</div>
+                        <h3 class="skill-title">Operations</h3>
+                        <p class="skill-description">Process automation, workflow optimization, team efficiency</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Let's Work Together</h2>
+            <p>Ready to discuss how I can contribute to your team's success?</p>
+            <a href="mailto:your-email@example.com" class="contact-button">Get In Touch</a>
+        </div>
+    </section>
+</body>
+</html>
